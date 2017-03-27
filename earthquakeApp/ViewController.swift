@@ -60,10 +60,11 @@ class ViewController: UIViewController {
                 print(error!.localizedDescription)
             }
             var err: NSError?
-            var jsonResult = (try! JSONSerialization.JSONObjectWithData(data!, options: JSONSerialization.ReadingOptions.MutableContainers)) as! NSDictionary
+            var jsonResult = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
             if (err != nil) {
                 print("JSON Error \(err!.localizedDescription)")
             }
+            print(jsonResult)
             
         })
         jsonQuery.resume()
