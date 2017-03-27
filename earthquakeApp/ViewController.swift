@@ -36,6 +36,17 @@ class ViewController: UIViewController {
                     let coords = location!.coordinate
                     print(coords.latitude)
                     print(coords.longitude)
+                    let latitude = coords.latitude
+                    let longitude = coords.longitude
+                    let north = String(coords.latitude + 10)
+                    let south = String(coords.latitude - 10)
+                    let west = String(coords.longitude + 10)
+                    let east = String(coords.longitude - 10)
+                    
+                    
+                
+                    let url = "http://api.geonames.org/earthquakesJSON?formatted=true&north="+north+"&south="+south+"&east="+east+"&west="+west+"&username=enoch232&style=full"
+                    print(url)
                     
                 }
         })
