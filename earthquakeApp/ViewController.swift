@@ -45,12 +45,32 @@ class ViewController: UIViewController {
                     
                     
                 
-                    let url = "http://api.geonames.org/earthquakesJSON?formatted=true&north="+north+"&south="+south+"&east="+east+"&west="+west+"&username=enoch232&style=full"
-                    print(url)
+                    let urlAsString = "http://api.geonames.org/earthquakesJSON?formatted=true&north="+north+"&south="+south+"&east="+east+"&west="+west+"&username=enoch232&style=full"
+                    self.getJsonData(urlAsString: urlAsString)
                     
                 }
         })
     }
+    
+    func getJsonData(urlAsString: String) {
+        let url = URL(string: urlAsString)!
+        let urlSession = URLSession.shared
+        let jsonQuery = urlSession.dataTask(with: url, completionHandler: { data, response, error -> Void in
+            if (error != nil) {
+                print(error!.localizedDescription)
+            }
+            var err: NSError?
+            var jsonResult = (try! JSONSerialization.JSONObjectWithData(data!, options: JSONSerialization.ReadingOptions.MutableContainers)) as! NSDictionary
+            if (err != nil) {
+                print("JSON Error \(err!.localizedDescription)")
+            }
+            
+        })
+        jsonQuery.resume()
+    }
+    
+
+    
 
 
 }
