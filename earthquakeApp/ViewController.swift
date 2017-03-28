@@ -9,12 +9,16 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var earthquakesList: [Earthquake] = []
 
-
+    @IBOutlet weak var tablelist: UITableView!
     @IBOutlet weak var addressField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tablelist.dataSource = self
+        self.tablelist.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -25,7 +29,7 @@ class ViewController: UIViewController {
     @IBAction func searchAddress(_ sender: Any) {
         let geoCoder = CLGeocoder();
         let addressString = self.addressField.text!
-        CLGeocoder().geocodeAddressString(addressString, completionHandler:
+        geoCoder.geocodeAddressString(addressString, completionHandler:
             {(placemarks, error) in
                 
                 if error != nil {
@@ -36,8 +40,6 @@ class ViewController: UIViewController {
                     let coords = location!.coordinate
                     print(coords.latitude)
                     print(coords.longitude)
-                    let latitude = coords.latitude
-                    let longitude = coords.longitude
                     let north = String(coords.latitude + 10)
                     let south = String(coords.latitude - 10)
                     let west = String(coords.longitude + 10)
@@ -47,6 +49,8 @@ class ViewController: UIViewController {
                 
                     let urlAsString = "http://api.geonames.org/earthquakesJSON?formatted=true&north="+north+"&south="+south+"&east="+east+"&west="+west+"&username=enoch232&style=full"
                     self.getJsonData(urlAsString: urlAsString)
+                    self.tablelist.reloadData()
+                    print("updated")
                     
                 }
         })
@@ -64,15 +68,33 @@ class ViewController: UIViewController {
             if (err != nil) {
                 print("JSON Error \(err!.localizedDescription)")
             }
-            print(jsonResult)
+            print(jsonResult["earthquakes"])
+            let earthquakes = jsonResult["earthquakes"] as? [[String: Any]]
+            for earthquake in earthquakes! {
+                var eq = Earthquake(datetime: earthquake["datetime"]! as! String, depth: "\(earthquake["depth"]! as! Float)", eqid: earthquake["eqid"]! as! String, lat: "\(earthquake["lat"]! as! Float)", lng: "\(earthquake["lng"]! as! Float)", magnitude: "\(earthquake["magnitude"]! as! Float)", src: earthquake["src"]! as! String)
+                self.earthquakesList.append(eq)
+                
+            }
+            self.tablelist.reloadData()
+
+            print(self.earthquakesList.count)
+
             
         })
         jsonQuery.resume()
     }
     
-
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return earthquakesList.count
+    }
     
-
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        cell.textLabel?.text = "depth: \(earthquakesList[indexPath.row].depth), datetime: \(earthquakesList[indexPath.row].datetime), eqid: \(earthquakesList[indexPath.row]), lat: \(earthquakesList[indexPath.row].lat), lng: \(earthquakesList[indexPath.row].lng), magnitude: \(earthquakesList[indexPath.row].magnitude), src: \(earthquakesList[indexPath.row].src) "
+        cell.textLabel?.font = UIFont(name:"Avenir", size:15)
+        return(cell)
+    }
+    
 
 }
 

@@ -12,6 +12,7 @@
 		7BC193421E88918800947645 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BC193401E88918800947645 /* Main.storyboard */; };
 		7BC193441E88918800947645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BC193431E88918800947645 /* Assets.xcassets */; };
 		7BC193471E88918800947645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BC193451E88918800947645 /* LaunchScreen.storyboard */; };
+		7BC1934F1E89948A00947645 /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1934E1E89948A00947645 /* Earthquake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7BC193431E88918800947645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BC193461E88918800947645 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BC193481E88918800947645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BC1934E1E89948A00947645 /* Earthquake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				7BC1933C1E88918800947645 /* AppDelegate.swift */,
 				7BC1933E1E88918800947645 /* ViewController.swift */,
 				7BC193401E88918800947645 /* Main.storyboard */,
+				7BC1934E1E89948A00947645 /* Earthquake.swift */,
 				7BC193431E88918800947645 /* Assets.xcassets */,
 				7BC193451E88918800947645 /* LaunchScreen.storyboard */,
 				7BC193481E88918800947645 /* Info.plist */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BC1933F1E88918800947645 /* ViewController.swift in Sources */,
+				7BC1934F1E89948A00947645 /* Earthquake.swift in Sources */,
 				7BC1933D1E88918800947645 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +301,7 @@
 				7BC1934D1E88918800947645 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
