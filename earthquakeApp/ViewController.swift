@@ -90,8 +90,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "depth: \(earthquakesList[indexPath.row].depth), datetime: \(earthquakesList[indexPath.row].datetime), eqid: \(earthquakesList[indexPath.row]), lat: \(earthquakesList[indexPath.row].lat), lng: \(earthquakesList[indexPath.row].lng), magnitude: \(earthquakesList[indexPath.row].magnitude), src: \(earthquakesList[indexPath.row].src) "
+        cell.textLabel?.text = "depth: \(earthquakesList[indexPath.row].depth), datetime: \(earthquakesList[indexPath.row].datetime)\neqid: \(earthquakesList[indexPath.row].eqid), lat: \(earthquakesList[indexPath.row].lat), lng: \(earthquakesList[indexPath.row].lng)\nmagnitude: \(earthquakesList[indexPath.row].magnitude), src: \(earthquakesList[indexPath.row].src) "
         cell.textLabel?.font = UIFont(name:"Avenir", size:15)
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
         return(cell)
     }
     
