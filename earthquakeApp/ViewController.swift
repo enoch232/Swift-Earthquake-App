@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                     let urlAsString = "http://api.geonames.org/earthquakesJSON?formatted=true&north="+north+"&south="+south+"&east="+east+"&west="+west+"&username=enoch232&style=full"
                     self.getJsonData(urlAsString: urlAsString)
-                    self.tablelist.reloadData()
+                    
                     print("updated")
                     
                 }
@@ -82,6 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         })
         jsonQuery.resume()
+        self.tablelist.reloadData()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
